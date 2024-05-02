@@ -11,3 +11,19 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.header {
+  margin: 15px;
+}
+
+.App {
+  padding: 15px;
+}
+
+.route-link {
+  text-decoration: none;
+  background-color: #7E5FF1;
+  color: #ffffff;
+  padding: 10px 15px;
+  margin-right: 25px;
+}
