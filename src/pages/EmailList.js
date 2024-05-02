@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { Badge, Button, Table, Modal } from 'react-bootstrap';
-import axios from 'axios';
+import React, { useEffect, useState } from "react";
+import { Badge, Button, Table, Modal } from "react-bootstrap";
+import axios from "axios";
 
-import CONSTANT from '../constants';
+import CONSTANT from "../constants";
 
 function EmailList() {
     const [emailNotificationList, setEmailNotificationList] = useState([]);
     const [emailData, setEmailData] = useState(null)
     const [lgShow, setLgShow] = useState(false);
 
-    async function fetchEmailNotificationList(uuid = '') {
+    async function fetchEmailNotificationList(uuid = "") {
         const response = await axios.get(`${CONSTANT.API_BASE_URL}/api/email-notification-list`);
         setEmailNotificationList(response.data.data);
     }
@@ -18,8 +18,8 @@ function EmailList() {
         fetchEmailNotificationList();
     }, []);
 
-    function renderStatus(status = 'Pending') {
-        let badge = '';
+    function renderStatus(status = "Pending") {
+        let badge = "";
         switch (status) {
             case "Pending":
                 badge = <Badge bg="warning">{status}</Badge>
@@ -36,7 +36,7 @@ function EmailList() {
         return badge;
     }
 
-    async function fetchEmailData(uuid = '') {
+    async function fetchEmailData(uuid = "") {
         try {
             const response = await axios.get(`${CONSTANT.API_BASE_URL}/api/email-notification/${uuid}`);
             setEmailData(response.data.data);
@@ -66,9 +66,9 @@ function EmailList() {
                                 <tr key={el.uuid}>
                                     <td>{el.key}</td>
                                     <td>{el.subject}</td>
-                                    <td>{el.email.join(', ')}</td>
-                                    <td>{el.bcc.join(', ')}</td>
-                                    <td>{el.delayed_send ? el.delayed_send : 'Immediately'}</td>
+                                    <td>{el.email.join(", ")}</td>
+                                    <td>{el.bcc.join(", ")}</td>
+                                    <td>{el.delayed_send ? el.delayed_send : "Immediately"}</td>
                                     <td>{renderStatus(el.status)}</td>
                                     <td>
                                         <Button variant="primary" size="sm" onClick={() => fetchEmailData(el.uuid)}>
@@ -92,7 +92,7 @@ function EmailList() {
                         {emailData && emailData.subject}
                     </Modal.Title>
                 </Modal.Header>
-                <Modal.Body style={{ display: "block", margin: "0 auto" }}><div style={{ display: 'block' }} dangerouslySetInnerHTML={{ __html: (emailData && emailData.body) }} /></Modal.Body>
+                <Modal.Body style={{ display: "block", margin: "0 auto" }}><div style={{ display: "block" }} dangerouslySetInnerHTML={{ __html: (emailData && emailData.body) }} /></Modal.Body>
             </Modal>
         </div>
     );

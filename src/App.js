@@ -1,10 +1,10 @@
-import React from 'react';
+import React from "react";
 import { Routes, Route } from "react-router-dom"
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
 
 import Home from "./pages/Home"
 import EmailList from "./pages/EmailList"
-import Header from './layout/Header';
+import Header from "./layout/Header";
 
 
 function App() {
